@@ -7,10 +7,9 @@
 using System;
 using System.Collections;
 using System.Threading;
-using Microsoft.SPOT;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -104,7 +103,7 @@ namespace GHI.Glide.UI
             {
                 _renderedWithNumChildren = NumChildren;
 
-                _bitmap = Device.CreateBitmap(Width, NumChildren * this[0].Height);
+                _bitmap = Glide.CreateBitmap(Width, NumChildren * this[0].Height);
                 _bitmap.DrawRectangle(0, 0, 0, 0, _bitmap.Width, _bitmap.Height, 0, 0, Colors.White, 0, 0, 0, 0, 0, Alpha);
 
                 for (int i = 0; i < NumChildren; i++)

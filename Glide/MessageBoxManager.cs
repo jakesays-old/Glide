@@ -6,9 +6,9 @@
 
 using System;
 using System.Threading;
-using Microsoft.SPOT;
 using GHI.Glide.Display;
 using GHI.Glide.UI;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide
 {
@@ -293,12 +293,12 @@ namespace GHI.Glide
             bool isTouched = false;
 
             // Create touch inputs that are used as arguments
-            Microsoft.SPOT.Touch.TouchInput[] touches = new Microsoft.SPOT.Touch.TouchInput[] { new Microsoft.SPOT.Touch.TouchInput() };
+            TouchInput[] touches = new TouchInput[] { new TouchInput() };
 
             // Begin touch panel polling
             while (_result == ModalResult.None && !_forceClose)
             {
-                //TODO: Microsoft.SPOT.Touch.TouchCollectorConfiguration.GetLastTouchPoint(ref x, ref y);
+                TouchCollectorConfiguration.GetLastTouchPoint(ref x, ref y);
 
                 if (x >= 0 && x <= Glide.LCD.Width && y >= 0 && y <= Glide.LCD.Height)
                 {

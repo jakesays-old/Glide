@@ -6,9 +6,9 @@
 
 using System;
 using System.Threading;
-using Microsoft.SPOT;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {

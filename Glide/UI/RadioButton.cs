@@ -5,10 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -17,7 +15,7 @@ namespace GHI.Glide.UI
     /// </summary>
     public class RadioButton : DisplayObject
     {
-        private Bitmap _RadioButton = Device.LoadBitmap("RadioButton");
+        private Bitmap _RadioButton = Glide.LoadBitmap("RadioButton");
         private bool _pressed = false;
         private bool _checked = false;
         private string _value = String.Empty;

@@ -5,9 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide
 {
@@ -79,7 +78,7 @@ namespace GHI.Glide
         /// <returns></returns>
         public static Font GetFont(FontType type)
         {
-	        var font = Device.GetFont(type);
+	        var font = Glide.GetFont(type);
 	        return font;
         }
 

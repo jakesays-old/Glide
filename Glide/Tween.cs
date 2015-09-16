@@ -6,8 +6,6 @@
 
 using System;
 using System.Threading;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 
 namespace GHI.Glide
@@ -108,9 +106,9 @@ namespace GHI.Glide
                     index = 0;
                     while (index < x1.Length)
                     {
-                        Glide.screen.DrawImage(x1[index], fromY, fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
-                        Glide.screen.DrawImage(x2[index], toY, toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
-                        Glide.screen.Flush();
+                        Glide.Screen.DrawImage(x1[index], fromY, fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
+                        Glide.Screen.DrawImage(x2[index], toY, toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
+                        Glide.Screen.Flush();
                         index++;
                     }
                     Glide.MainWindow = toWindow;
@@ -122,9 +120,9 @@ namespace GHI.Glide
                     index = 0;
                     while (index < x1.Length)
                     {
-                        Glide.screen.DrawImage(x1[index], fromY, fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
-                        Glide.screen.DrawImage(x2[index], toY, toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
-                        Glide.screen.Flush();
+                        Glide.Screen.DrawImage(x1[index], fromY, fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
+                        Glide.Screen.DrawImage(x2[index], toY, toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
+                        Glide.Screen.Flush();
                         index++;
                     }
                     Glide.MainWindow = toWindow;
@@ -136,9 +134,9 @@ namespace GHI.Glide
                     index = 0;
                     while (index < y1.Length)
                     {
-                        Glide.screen.DrawImage(0, y1[index], fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
-                        Glide.screen.DrawImage(0, y2[index], toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
-                        Glide.screen.Flush();
+                        Glide.Screen.DrawImage(0, y1[index], fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
+                        Glide.Screen.DrawImage(0, y2[index], toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
+                        Glide.Screen.Flush();
                         index++;
                     }
                     Glide.MainWindow = toWindow;
@@ -150,9 +148,9 @@ namespace GHI.Glide
                     index = 0;
                     while (index < y1.Length)
                     {
-                        Glide.screen.DrawImage(0, y1[index], fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
-                        Glide.screen.DrawImage(0, y2[index], toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
-                        Glide.screen.Flush();
+                        Glide.Screen.DrawImage(0, y1[index], fromWindow.Graphics.GetBitmap(), 0, 0, fromWindow.Width, fromWindow.Height);
+                        Glide.Screen.DrawImage(0, y2[index], toWindow.Graphics.GetBitmap(), 0, 0, toWindow.Width, toWindow.Height);
+                        Glide.Screen.Flush();
                         index++;
                     }
                     Glide.MainWindow = toWindow;

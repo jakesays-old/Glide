@@ -9,7 +9,7 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{651E1954-C480-4034-854E-DDA79283EDB7}</ProjectGuid>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,38 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CalibrationSettings.cs" />
     <Compile Include="Colors.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="MessageBoxManager.cs" />
-    <Compile Include="Platform\Win32Device.cs" />
-    <Compile Include="Platform\Win32Bitmap.cs" />
-    <Compile Include="Platform\Win32Font.cs" />
-    <Compile Include="Platform\Win32PlatformHelpers.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ResourceHelpers.cs" />
-    <Compile Include="SPOT\Bitmap.cs" />
-    <Compile Include="SPOT\Color.cs" />
-    <Compile Include="SPOT\EventCategory.cs" />
-    <Compile Include="SPOT\Font.cs" />
-    <Compile Include="SPOT\GenericEvent.cs" />
-    <Compile Include="SPOT\HardwareProvider.cs" />
-    <Compile Include="SPOT\IEventListener.cs" />
-    <Compile Include="SPOT\IEventProcessor.cs" />
-    <Compile Include="SPOT\ILog.cs" />
-    <Compile Include="SPOT\BaseEvent.cs" />
-    <Compile Include="SPOT\TouchEvent.cs" />
-    <Compile Include="SPOT\TouchGesture.cs" />
-    <Compile Include="SPOT\TouchGestureEventArgs.cs" />
-    <Compile Include="SPOT\TouchGestureEventHandler.cs" />
-    <Compile Include="SPOT\TouchInput.cs" />
-    <Compile Include="SPOT\TouchInputFlags.cs" />
-    <Compile Include="SPOT\TouchMessages.cs" />
-    <Compile Include="SPOT\TouchScreenEventArgs.cs" />
-    <Compile Include="SPOT\TouchScreenEventHandler.cs" />
+    <Compile Include="TouchEventArgs.cs" />
+    <Compile Include="TouchEventHandler.cs" />
+    <Compile Include="TouchGesture.cs" />
+    <Compile Include="TouchGestureEventArgs.cs" />
+    <Compile Include="TouchGestureEventHandler.cs" />
     <Compile Include="UI\DataGrid\DataGrid.cs" />
     <Compile Include="Display\Window.cs" />
     <Compile Include="Events\Events.cs" />
@@ -109,54 +87,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Folder Include="SPOT\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\droid_reg08.tinyfnt" />
-    <None Include="Resources\droid_reg09.tinyfnt" />
-    <None Include="Resources\droid_reg10.tinyfnt" />
-    <None Include="Resources\droid_reg11.tinyfnt" />
-    <None Include="Resources\droid_reg12.tinyfnt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\droid_reg14.tinyfnt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\droid_reg18.tinyfnt" />
-    <None Include="Resources\droid_reg24.tinyfnt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\droid_reg32.tinyfnt" />
-    <None Include="Resources\droid_reg48.tinyfnt" />
-    <None Include="Resources\TextBox.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\loading.gif" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="Resources\Modal.gif" />
-    <None Include="Resources\RadioButton.gif" />
-    <None Include="Resources\CheckBox_On.gif" />
-    <None Include="Resources\CheckBox_Off.gif" />
-    <None Include="Resources\Button_Up.gif" />
-    <None Include="Resources\Button_Down.gif" />
-    <None Include="Resources\ProgressBar_Fill.gif" />
-    <None Include="Resources\ProgressBar.gif" />
-    <None Include="Resources\DropdownText_Up.gif" />
-    <None Include="Resources\DropdownText_Down.gif" />
-    <None Include="Resources\DropdownButton_Up.gif" />
-    <None Include="Resources\DropdownButton_Down.gif" />
-    <None Include="Resources\DataGridIcon_Desc.gif" />
-    <None Include="Resources\DataGridIcon_Asc.gif" />
-    <None Include="Resources\Keyboard_320x128_Up_Uppercase.gif" />
-    <None Include="Resources\Keyboard_320x128_Up_Symbols.gif" />
-    <None Include="Resources\Keyboard_320x128_Up_Numbers.gif" />
-    <None Include="Resources\Keyboard_320x128_Up_Lowercase.gif" />
+    <ProjectReference Include="..\DeviceSupport\DeviceSupport.csproj">
+      <Project>{c01a9255-1067-4ed2-8006-a94ffdad125a}</Project>
+      <Name>DeviceSupport</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

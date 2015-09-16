@@ -4,8 +4,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.Display
 {
@@ -130,8 +129,8 @@ namespace GHI.Glide.Display
         public override void Invalidate()
         {
             Render();
-            Glide.screen.DrawImage(X, Y, Graphics.GetBitmap(), 0, ListY, Width, Height);
-            Glide.screen.Flush();
+            Glide.Screen.DrawImage(X, Y, Graphics.GetBitmap(), 0, ListY, Width, Height);
+            Glide.Screen.Flush();
         }
 
         /// <summary>
@@ -213,8 +212,8 @@ namespace GHI.Glide.Display
 
                     ListY = GlideUtils.Math.MinMax(ListY, 0, _listMaxY);
 
-                    Glide.screen.DrawImage(X, Y, Graphics.GetBitmap(), 0, ListY, Width, Height);
-                    Glide.screen.Flush();
+                    Glide.Screen.DrawImage(X, Y, Graphics.GetBitmap(), 0, ListY, Width, Height);
+                    Glide.Screen.Flush();
                 }
             }
         }

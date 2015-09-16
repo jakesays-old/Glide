@@ -7,11 +7,9 @@
 using System;
 using System.Collections;
 using System.Threading;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -25,8 +23,8 @@ namespace GHI.Glide.UI
 
         private Bitmap _headers;
         private Bitmap _items;
-        private Bitmap _DataGridIcon_Asc = Device.LoadBitmap("DataGridIcon_Asc");
-        private Bitmap _DataGridIcon_Desc = Device.LoadBitmap("DataGridIcon_Desc");
+        private Bitmap _DataGridIcon_Asc = Glide.LoadBitmap("DataGridIcon_Asc");
+        private Bitmap _DataGridIcon_Desc = Glide.LoadBitmap("DataGridIcon_Desc");
 
         private bool _renderHeaders;
         private bool _renderItems;
@@ -76,7 +74,7 @@ namespace GHI.Glide.UI
             // When the headers are shown the row count is decreased by one.
             ShowHeaders = true;
 
-            _headers = Device.CreateBitmap(Width, RowHeight);
+            _headers = Glide.CreateBitmap(Width, RowHeight);
 
             Clear();
         }
@@ -205,11 +203,11 @@ namespace GHI.Glide.UI
 
                     if (_rows.Count < _rowCount)
                     {
-                        _items = Device.CreateBitmap(Width, _rowCount * RowHeight);
+                        _items = Glide.CreateBitmap(Width, _rowCount * RowHeight);
                         RenderEmpty();
                     }
                     else
-                        _items = Device.CreateBitmap(Width, _rows.Count * RowHeight);
+                        _items = Glide.CreateBitmap(Width, _rows.Count * RowHeight);
                 }
                 else
                     _items.DrawRectangle(0, 0, 0, 0, Width, _items.Height, 0, 0, 0, 0, 0, 0, 0, 0, 255);

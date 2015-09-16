@@ -6,7 +6,6 @@
 
 using System;
 using System.Collections;
-using Microsoft.SPOT;
 
 namespace GHI.Glide.UI
 {

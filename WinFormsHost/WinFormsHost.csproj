@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E422B85-41FD-4EC3-8FB8-D30778F3D2D8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinFormsHost</RootNamespace>
+    <AssemblyName>WinFormsHost</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Display.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Display.Designer.cs">
+      <DependentUpon>Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\droid_reg08.tinyfnt" />
+    <None Include="Resources\droid_reg09.tinyfnt" />
+    <None Include="Resources\droid_reg10.tinyfnt" />
+    <None Include="Resources\droid_reg11.tinyfnt" />
+    <None Include="Resources\droid_reg12.tinyfnt" />
+    <None Include="Resources\droid_reg14.tinyfnt" />
+    <None Include="Resources\droid_reg18.tinyfnt" />
+    <None Include="Resources\droid_reg24.tinyfnt" />
+    <None Include="Resources\droid_reg32.tinyfnt" />
+    <None Include="Resources\droid_reg48.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button_Down.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button_Up.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CheckBox_Off.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CheckBox_On.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DataGridIcon_Asc.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DataGridIcon_Desc.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DropdownButton_Down.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DropdownButton_Up.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DropdownText_Down.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DropdownText_Up.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyboard_320x128_Up_Lowercase.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyboard_320x128_Up_Numbers.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyboard_320x128_Up_Symbols.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyboard_320x128_Up_Uppercase.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Modal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressBar_Fill.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioButton.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TextBox.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeviceSupport\DeviceSupport.csproj">
+      <Project>{c01a9255-1067-4ed2-8006-a94ffdad125a}</Project>
+      <Name>DeviceSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Glide\Glide.csproj">
+      <Project>{651e1954-c480-4034-854e-dda79283edb7}</Project>
+      <Name>Glide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Win32Device\Win32Device.csproj">
+      <Project>{ac6c1264-cf6e-43c6-8c0e-368a3f75a3bc}</Project>
+      <Name>Win32Device</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -4,248 +4,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-using System;
 using System.Threading;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Hardware;
-using Microsoft.SPOT.Touch;
-using Microsoft.SPOT.Presentation;
-using Microsoft.SPOT.Presentation.Media;
-using GHI.Glide.Geom;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide
 {
-    /// <summary>
-    /// Touch event arguments.
-    /// </summary>
-    public class TouchEventArgs
-    {
-        /// <summary>
-        /// Indicates whether or not to continue processing the event.
-        /// </summary>
-        public bool Propagate = true;
-
-        /// <summary>
-        /// The point of contact.
-        /// </summary>
-        public Point Point;
-
-		/// <summary>
-		/// Creates a new TouchEventArgs.
-		/// </summary>
-		/// <param name="Touches">TouchInput</param>
-		public TouchEventArgs(TouchInput[] Touches)
-		{
-			Point = new Point(Touches[0].X, Touches[0].Y);
-		}
-
-		/// <summary>
-		/// Creates a new TouchEventArgs.
-		/// </summary>
-		/// <param name="point">Point</param>
-		public TouchEventArgs(Point point)
-        {
-            Point = point;
-        }
-
-        /// <summary>
-        /// Stops propagation.
-        /// </summary>
-        public void StopPropagation()
-        {
-            Propagate = false;
-        }
-    }
-
-    /// <summary>
-    /// The TouchGesture class defines gestures.
-    /// </summary>
-    public enum TouchGesture : uint
-    {
-        /// <summary>
-        /// No Gesture
-        /// </summary>
-        /// <remarks>Can be used to represent an error gesture or unknown gesture.</remarks>
-        NoGesture = 0,
-
-        /// <summary>
-        /// Begin
-        /// </summary>
-        /// <remarks>Used to identify the beginning of a Gesture Sequence; App can use this to highlight UIElement or some other sort of notification.</remarks>
-        Begin = 1,
-
-        /// <summary>
-        /// End
-        /// </summary>
-        /// <remarks>Used to identify the end of a gesture sequence; Fired when last finger involved in a gesture is removed.</remarks>
-        End = 2,
-
-        /// <summary>
-        /// Right
-        /// </summary>
-        Right = 3,
-
-        /// <summary>
-        /// Up Right
-        /// </summary>
-        UpRight = 4,
-
-        /// <summary>
-        /// Up
-        /// </summary>
-        Up = 5,
-
-        /// <summary>
-        ///  Up Left
-        /// </summary>
-        UpLeft = 6,
-
-        /// <summary>
-        /// Left
-        /// </summary>
-        Left = 7,
-
-        /// <summary>
-        /// Down Left
-        /// </summary>
-        DownLeft = 8,
-
-        /// <summary>
-        /// Down
-        /// </summary>
-        Down = 9,
-
-        /// <summary>
-        /// Down Right
-        /// </summary>
-        DownRight = 10,
-
-        /// <summary>
-        /// Tap
-        /// </summary>
-        Tap = 11,
-
-        /// <summary>
-        /// Double Tap
-        /// </summary>
-        DoubleTap = 12,
-
-        /// <summary>
-        /// Zoom
-        /// </summary>
-        /// <remarks>Equivalent to your "Pinch" gesture.</remarks>
-        Zoom = 114,
-
-        /// <summary>
-        /// Pan
-        /// </summary>
-        /// <remarks>Equivalent to your "Scroll" gesture.</remarks>
-        Pan = 115,
-
-        /// <summary>
-        /// Rotate
-        /// </summary>
-        Rotate = 116,
-
-        /// <summary>
-        /// Two finger tap.
-        /// </summary>
-        TwoFingerTap = 117,
-        
-        /// <summary>
-        /// Rollover
-        /// </summary>
-        Rollover = 118,
-
-        /// <summary>
-        /// Undefined
-        /// </summary>
-        /// <remarks>Additional touch gestures.</remarks>
-        UserDefined = 200,
-    }
-
-    /// <summary>
-    /// Touch gesture event arguments.
-    /// </summary>
-    public class TouchGestureEventArgs
-    {
-        /// <summary>
-        /// Indicates whether or not to continue processing the event.
-        /// </summary>
-        public bool Propagate = true;
-
-        /// <summary>
-        /// Time the event occured.
-        /// </summary>
-        public readonly DateTime Timestamp;
-
-        /// <summary>
-        /// X coordinate.
-        /// </summary>
-        /// <remarks>The X forms the center location of the gesture for multi-touch or the starting location for single touch.</remarks>
-        public readonly int X;
-
-        /// <summary>
-        /// Y coordinate.
-        /// </summary>
-        /// <remarks>The Y forms the center location of the gesture for multi-touch or the starting location for single touch.</remarks>
-        public readonly int Y;
-
-        /// <summary>
-        /// Indicates the gesture.
-        /// </summary>
-        public readonly TouchGesture Gesture;
-
-        // 2 bytes for gesture-specific arguments.
-        // TouchGesture.Zoom: Arguments = distance between fingers
-        // TouchGesture.Rotate: Arguments = angle in degrees (0-360)
-
-        /// <summary>
-        /// Touch gesture arguments.
-        /// </summary>
-        public readonly ushort Arguments;
-
-        /// <summary>
-        /// Creates a new TouchGestureEventArgs.
-        /// </summary>
-        /// <param name="gesture">Touch gesture.</param>
-        /// <param name="x">X-axis position.</param>
-        /// <param name="y">Y-axis position.</param>
-        /// <param name="arguments">Touch gesture arguments.</param>
-        /// <param name="timestamp">Time the event occured.</param>
-        public TouchGestureEventArgs(TouchGesture gesture, int x, int y, ushort arguments, DateTime timestamp)
-        {
-            Gesture = gesture;
-            X = x;
-            Y = y;
-            Arguments = arguments;
-            Timestamp = timestamp;
-        }
-
-        /// <summary>
-        /// Stops propagation.
-        /// </summary>
-        public void StopPropagation()
-        {
-            Propagate = false;
-        }
-    }
-
-    /// <summary>
-    /// Touch event handler.
-    /// </summary>
-    /// <param name="sender">Object associated with the event.</param>
-    /// <param name="e">Touch event arguments.</param>
-    public delegate void TouchEventHandler(object sender, TouchEventArgs e);
-
-    /// <summary>
-    /// Touch gesture event handler.
-    /// </summary>
-    /// <param name="sender">Object associated with the event.</param>
-    /// <param name="e">Touch event arguments.</param>
-    public delegate void TouchGestureEventHandler(object sender, TouchGestureEventArgs e);
-
-    /// <summary>
+	/// <summary>
     /// The GlideTouch class handles all touch functionality.
     /// </summary>
     public static class GlideTouch
@@ -332,12 +96,12 @@ namespace GHI.Glide
         /// </summary>
         public static void Initialize()
         {
-            //touchConnection = new TouchConnection();
-            //Touch.Initialize(touchConnection);
+            touchConnection = new TouchConnection();
+            Touch.Initialize(touchConnection);
             
-            //TouchCollectorConfiguration.CollectionMode = CollectionMode.InkAndGesture;
-            //TouchCollectorConfiguration.CollectionMethod = CollectionMethod.Native;
-            //TouchCollectorConfiguration.SamplingFrequency = 50;
+            TouchCollectorConfiguration.CollectionMode = CollectionMode.InkAndGesture;
+            TouchCollectorConfiguration.CollectionMethod = CollectionMethod.Native;
+            TouchCollectorConfiguration.SamplingFrequency = 50;
 
             //calWeakRef = ExtendedWeakReference.RecoverOrCreate(typeof(GlideCalibration), 0, ExtendedWeakReference.c_SurvivePowerdown);
             //calWeakRef.Priority = (Int32)ExtendedWeakReference.PriorityLevel.Important;
@@ -427,37 +191,5 @@ namespace GHI.Glide
         /// Current calibration settings if set othwerwise null.
         /// </summary>
         public static CalibrationSettings CalSettings;
-    }
-
-    /// <summary>
-    /// Calibration Settings
-    /// </summary>
-    [Serializable]
-    public sealed class CalibrationSettings
-    {
-        /// <summary>
-        /// Calibration Points
-        /// </summary>
-        public Point[] Points { get; set; }
-
-        /// <summary>
-        /// Screen X Buffer
-        /// </summary>
-        public short[] SX { get; set; }
-
-        /// <summary>
-        /// Screen Y Buffer
-        /// </summary>
-        public short[] SY { get; set; }
-
-        /// <summary>
-        /// Uncalibrated X Buffer
-        /// </summary>
-        public short[] CX { get; set; }
-
-        /// <summary>
-        /// Uncalibrated Y Buffer
-        /// </summary>
-        public short[] CY { get; set; }
     }
 }

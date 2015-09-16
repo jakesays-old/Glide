@@ -5,11 +5,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -21,7 +19,7 @@ namespace GHI.Glide.UI
         internal string text = String.Empty;
         internal bool pressed;
         internal int leftMargin = 5;
-        internal Bitmap _TextBox = Device.LoadBitmap("TextBox");
+        internal Bitmap _TextBox = Glide.LoadBitmap("TextBox");
 
 		/// <summary>
 		/// Value changed event.

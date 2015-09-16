@@ -5,10 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.Display
 {
@@ -26,7 +24,7 @@ namespace GHI.Glide.Display
         /// <param name="height">Height</param>
         public Graphics(int width, int height)
         {
-            _bitmap = Device.CreateBitmap(width, height);
+            _bitmap = Glide.CreateBitmap(width, height);
         }
 
         /// <summary>
@@ -156,7 +154,7 @@ namespace GHI.Glide.Display
         /// <param name="opacity">Opacity</param>
         public void DrawRectangle(Rectangle rect, Color color, ushort opacity)
         {
-            _bitmap.DrawRectangle(0, 0, rect.X, rect.Y, rect.Width, rect.Height, 0, 0, color, 0, 0, 0, 0, 0, opacity);
+            _bitmap.DrawRectangle(Color.Black, 0, rect.X, rect.Y, rect.Width, rect.Height, 0, 0, color, 0, 0, 0, 0, 0, opacity);
         }
 
         /// <summary>

@@ -5,10 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -53,7 +51,7 @@ namespace GHI.Glide.UI
         /// <summary>
         /// Background image.
         /// </summary>
-        public Bitmap BackImage = Device.LoadBitmap("Modal");
+        public Bitmap BackImage = Glide.LoadBitmap("Modal");
 
 		/// <summary>
 		/// Titlebar height.

@@ -5,11 +5,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -39,7 +37,7 @@ namespace GHI.Glide.UI
             Height = height;
 
             // Default
-            Bitmap = Device.CreateBitmap(Width, Height);
+            Bitmap = Glide.CreateBitmap(Width, Height);
             Bitmap.DrawRectangle(0, 0, 0, 0, Width, Height, 0, 0, Colors.Fuchsia, 0, 0, Colors.Fuchsia, 0, 0, Alpha);
         }
 

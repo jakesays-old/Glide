@@ -5,11 +5,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -174,12 +172,12 @@ namespace GHI.Glide.UI
         /// <summary>
         /// Bitmap that represents the up state.
         /// </summary>
-        public Bitmap ButtonUp = Device.LoadBitmap("Button_Up");
+        public Bitmap ButtonUp = Glide.LoadBitmap("Button_Up");
 
         /// <summary>
         /// Bitmap that represents the down state.
         /// </summary>
-        public Bitmap ButtonDown = Device.LoadBitmap("Button_Down");
+        public Bitmap ButtonDown = Glide.LoadBitmap("Button_Down");
 
         /// <summary>
         /// Text on the button.

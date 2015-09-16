@@ -4,9 +4,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-using Microsoft.SPOT;
 using GHI.Glide.Display;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -15,8 +14,8 @@ namespace GHI.Glide.UI
     /// </summary>
     public class CheckBox : DisplayObject
     {
-        private Bitmap _CheckBox_On = Device.LoadBitmap("CheckBox_On");
-        private Bitmap _CheckBox_Off = Device.LoadBitmap("CheckBox_Off");
+        private Bitmap _CheckBox_On = Glide.LoadBitmap("CheckBox_On");
+        private Bitmap _CheckBox_Off = Glide.LoadBitmap("CheckBox_Off");
         private bool _pressed = false;
         private bool _checked = false;
 

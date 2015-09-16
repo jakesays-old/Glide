@@ -5,9 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using Microsoft.SPOT;
 using GHI.Glide.Display;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -16,8 +15,8 @@ namespace GHI.Glide.UI
     /// </summary>
     public class ProgressBar : DisplayObject
     {
-        private Bitmap _ProgressBar = Device.LoadBitmap("ProgressBar");
-        private Bitmap _ProgressBar_Fill = Device.LoadBitmap("ProgressBar_Fill");
+        private Bitmap _ProgressBar = Glide.LoadBitmap("ProgressBar");
+        private Bitmap _ProgressBar_Fill = Glide.LoadBitmap("ProgressBar_Fill");
 
 		/// <summary>
 		/// Creates a new ProgressBar.

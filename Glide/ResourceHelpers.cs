@@ -1,4 +1,4 @@
-﻿using Microsoft.SPOT;
+﻿using Glide.DeviceSupport;
 
 namespace GHI.Glide
 {

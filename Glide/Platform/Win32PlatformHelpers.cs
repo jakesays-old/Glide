@@ -1,4 +1,4 @@
-﻿using Microsoft.SPOT.Presentation.Media;
+﻿using Glide.DeviceSupport;
 
 namespace GHI.Glide.Platform
 {

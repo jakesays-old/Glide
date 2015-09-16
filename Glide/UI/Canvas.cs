@@ -6,9 +6,8 @@
 
 using System;
 using System.Collections;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {

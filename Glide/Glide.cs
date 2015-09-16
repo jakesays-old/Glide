@@ -6,12 +6,10 @@
 
 using System;
 using System.Collections;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Hardware;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
 using GHI.Glide.UI;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide
 {
@@ -20,21 +18,24 @@ namespace GHI.Glide
     /// </summary>
     public static class Glide
     {
-        internal static Bitmap screen;
         private static Window _mainWindow;
         private static Keyboard _keyboard;
         private static KeyboardText _keyboardText;
         private static InputBox _inputBox;
         private static Dropdown _dropdown;
         private static List _list;
-        private static Size screenSize;
 
-        static Glide()
+		internal static IPlatform Platform { get; private set; }
+
+        public static void Start(IPlatform platform)
         {
-            int width, height, bitsPerPixel, orientationDeg;
-            HardwareProvider.HwProvider.GetLCDMetrics(out width, out height, out bitsPerPixel, out orientationDeg);
-            LCD = new Size() { Width = width, Height = height };
-            screen = Device.CreateBitmap(width, height);
+	        Platform = platform;
+
+			LCD = new Size
+			{
+				Width = Platform.ScreenWidth,
+				Height = Platform.ScreenHeight
+			};
 
             // Are we in the emulator?
 //            if (SystemInfo.SystemID.SKU == 3)
@@ -48,62 +49,24 @@ namespace GHI.Glide
             MessageBoxManager = new MessageBoxManager();
 
             // Show loading
-            Bitmap loading = Device.LoadBitmap("loading");
-            screen.DrawImage((LCD.Width - loading.Width) / 2, (LCD.Height - loading.Height) / 2, loading, 0, 0, loading.Width, loading.Height);
-            screen.Flush();
+            Bitmap loading = LoadBitmap("loading");
+            Screen.DrawImage((LCD.Width - loading.Width) / 2, (LCD.Height - loading.Height) / 2, loading, 0, 0, loading.Width, loading.Height);
+            Screen.Flush();
         }
 
         /// <summary>
         /// Returns the screen resolution.
         /// </summary>
-        public static Size LCD
-        {
-            get
-            {
-                return Glide.screenSize;
-            }
-            private set
-            {
-                Glide.screenSize = value;
-            }
-        }
+        public static Size LCD { get; private set; }
 
         /// <summary>
         /// Returns a reference to the bitmap that represents the current screen.
         /// This is only useful for drawing the bitmap to a display that does not
         /// support bitmap.flush().
         /// </summary>
-        public static Bitmap Screen
-        {
-            get
-            {
-                return Glide.screen;
-            }
-        }
+        public static Bitmap Screen => Platform.Screen;
 
-        /// <summary>
-        /// This method changes the underlying size of the bitmap that is drawn to
-        /// the screen. Do not call this method if you are using a regular display.
-        /// It is only useful when you are using a non-native display such as a
-        /// SPI display like our DisplayN18.
-        /// </summary>
-        /// <param name="width">The width of the display.</param>
-        /// <param name="height">The height of the display.</param>
-        public static void SetScreenSize(int width, int height)
-        {
-            if (width <= 0 || height <= 0)
-                throw new ArgumentException("Width and height must be positive.");
-
-            Glide.screenSize.Width = width;
-            Glide.screenSize.Height = height;
-
-            Glide.screen.Dispose();
-            Glide.screen = Device.CreateBitmap(width, height);
-
-            Glide.MessageBoxManager = new MessageBoxManager();
-        }
-
-        /// <summary>
+	    /// <summary>
         /// Opens the keyboard.
         /// </summary>
         /// <param name="sender">Object associated with the event.</param>
@@ -259,11 +222,11 @@ namespace GHI.Glide
 
             int offsetY = y - _mainWindow.ListY;
 
-            screen.DrawImage(x, offsetY, _mainWindow.Graphics.GetBitmap(), x, y, width, height);
+            Screen.DrawImage(x, offsetY, _mainWindow.Graphics.GetBitmap(), x, y, width, height);
 
             // Object must be partially visible so flushing doesn't error.
             if (_mainWindow.Rect.Contains(x, offsetY, width, height))
-                Glide.screen.Flush(x, offsetY, width, height);
+                Glide.Screen.Flush(x, offsetY, width, height);
         }
 
         /// <summary>
@@ -293,10 +256,10 @@ namespace GHI.Glide
 
             keyboard.BitmapUp = new Bitmap[4]
             {
-				Device.LoadBitmap("Keyboard_320x128_Up_Uppercase"),
-				Device.LoadBitmap("Keyboard_320x128_Up_Lowercase"),
-				Device.LoadBitmap("Keyboard_320x128_Up_Numbers"),
-				Device.LoadBitmap("Keyboard_320x128_Up_Symbols")
+				LoadBitmap("Keyboard_320x128_Up_Uppercase"),
+				LoadBitmap("Keyboard_320x128_Up_Lowercase"),
+				LoadBitmap("Keyboard_320x128_Up_Numbers"),
+				LoadBitmap("Keyboard_320x128_Up_Symbols")
             };
 
             return keyboard;
@@ -305,7 +268,7 @@ namespace GHI.Glide
         /// <summary>
         /// Indicates whether or not we're using the emulator.
         /// </summary>
-        public static readonly bool IsEmulator;
+        public static bool IsEmulator { get; private set; }
 
         /// <summary>
         /// Indicates whether or not to resize windows to the LCD's resolution.
@@ -341,10 +304,9 @@ namespace GHI.Glide
             set
             {
                 // Ignore events on the current window
-                if (_mainWindow != null)
-                    _mainWindow.IgnoreEvents();
+	            _mainWindow?.IgnoreEvents();
 
-                // Change to the new window
+	            // Change to the new window
                 _mainWindow = value;
 
                 // Begin handling events
@@ -357,5 +319,59 @@ namespace GHI.Glide
             }
         }
 
-    }
+		public static Bitmap CreateBitmap(int width, int height)
+		{
+			var bitmap = Platform.CreateBitmap(width, height);
+			return bitmap;
+		}
+
+		public static Bitmap LoadBitmap(string resourceName)
+		{
+			var bitmap = Platform.LoadBitmap(resourceName);
+			return bitmap;
+		}
+
+		public static Font GetFont(FontManager.FontType type)
+		{
+			int size;
+
+			switch (type)
+			{
+				case FontManager.FontType.droid_reg08:
+					size = 8;
+					break;
+				case FontManager.FontType.droid_reg09:
+					size = 9;
+					break;
+				case FontManager.FontType.droid_reg10:
+					size = 10;
+					break;
+				case FontManager.FontType.droid_reg11:
+					size = 11;
+					break;
+				case FontManager.FontType.droid_reg12:
+					size = 12;
+					break;
+				case FontManager.FontType.droid_reg14:
+					size = 14;
+					break;
+				case FontManager.FontType.droid_reg18:
+					size = 18;
+					break;
+				case FontManager.FontType.droid_reg24:
+					size = 24;
+					break;
+				case FontManager.FontType.droid_reg32:
+					size = 32;
+					break;
+				case FontManager.FontType.droid_reg48:
+					size = 48;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(type), type, null);
+			}
+
+			return Platform.GetFont(size);
+		}
+	}
 }

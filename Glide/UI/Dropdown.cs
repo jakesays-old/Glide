@@ -6,11 +6,9 @@
 
 using System;
 using System.Collections;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -19,10 +17,10 @@ namespace GHI.Glide.UI
     /// </summary>
     public class Dropdown : DisplayObject
     {
-        private Bitmap _DropdownText_Up = Device.LoadBitmap("DropdownText_Up");
-        private Bitmap _DropdownText_Down = Device.LoadBitmap("DropdownText_Down");
-        private Bitmap _DropdownButton_Up = Device.LoadBitmap("DropdownButton_Up");
-        private Bitmap _DropdownButton_Down = Device.LoadBitmap("DropdownButton_Down");
+        private Bitmap _DropdownText_Up = Glide.LoadBitmap("DropdownText_Up");
+        private Bitmap _DropdownText_Down = Glide.LoadBitmap("DropdownText_Down");
+        private Bitmap _DropdownButton_Up = Glide.LoadBitmap("DropdownButton_Up");
+        private Bitmap _DropdownButton_Down = Glide.LoadBitmap("DropdownButton_Down");
         private bool _pressed = false;
         private int _leftMargin = 10;
 

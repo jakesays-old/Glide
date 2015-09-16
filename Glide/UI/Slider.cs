@@ -6,11 +6,9 @@
 
 using System;
 using System.Threading;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 using GHI.Glide.Geom;
-using GHI.Glide.Platform;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide.UI
 {
@@ -19,8 +17,8 @@ namespace GHI.Glide.UI
     /// </summary>
     public class Slider : DisplayObject
     {
-        private Bitmap _Button_Up = Device.LoadBitmap("Button_Up");
-        private Bitmap _Button_Down = Device.LoadBitmap("Button_Down");
+        private Bitmap _Button_Up = Glide.LoadBitmap("Button_Up");
+        private Bitmap _Button_Down = Glide.LoadBitmap("Button_Down");
 
 		private bool _dragging = false;
         private string _direction = SliderDirection.Horizontal;
@@ -318,7 +316,7 @@ namespace GHI.Glide.UI
             bool isTouched = false;
 
             // Create touch inputs that are used as arguments
-            Microsoft.SPOT.Touch.TouchInput[] touches = new Microsoft.SPOT.Touch.TouchInput[] { new Microsoft.SPOT.Touch.TouchInput() };
+            TouchInput[] touches = new TouchInput[] { new TouchInput() };
 
             // Begin touch panel polling
             while (_dragging)

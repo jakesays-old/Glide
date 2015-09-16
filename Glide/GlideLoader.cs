@@ -9,10 +9,9 @@ using System.Collections;
 using System.Text;
 using System.Xml;
 using System.IO;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
 using GHI.Glide.Display;
 using GHI.Glide.UI;
+using Glide.DeviceSupport;
 
 namespace GHI.Glide
 {
@@ -21,8 +20,6 @@ namespace GHI.Glide
     /// </summary>
     public static class GlideLoader
     {
-	    private static Font _font = null;
-
 		//TODO: Resources.GetFont(Resources.FontResources.droid_reg10);
         private static DisplayObject _defaultDisplayObject = new DisplayObject();
         private static Window _window = null;
@@ -32,9 +29,9 @@ namespace GHI.Glide
         /// </summary>
         /// <param name="xmlStr">XML string.</param>
         /// <returns>Window object.</returns>
-        public static Window LoadWindow(string xmlStr)
+        public static Window LoadWindow(string xmlStr, bool render = true)
         {
-            return LoadWindow(UTF8Encoding.UTF8.GetBytes(xmlStr));
+            return LoadWindow(UTF8Encoding.UTF8.GetBytes(xmlStr), render);
         }
 
         /// <summary>
@@ -42,7 +39,7 @@ namespace GHI.Glide
         /// </summary>
         /// <param name="xmlBytes">XML bytes.</param>
         /// <returns>Window object.</returns>
-        public static Window LoadWindow(byte[] xmlBytes)
+        public static Window LoadWindow(byte[] xmlBytes, bool render = true)
         {
             XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
 
@@ -79,7 +76,10 @@ namespace GHI.Glide
 
             reader.Close();
 
-            _window.Render();
+	        if (render)
+	        {
+		        _window.Render();
+	        }
 
             return _window;
         }

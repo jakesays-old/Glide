@@ -1,7 +1,5 @@
 ﻿using System.Drawing.Imaging;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation.Media;
-
+using Glide.DeviceSupport;
 using Sd = System.Drawing;
 
 namespace GHI.Glide.Platform
